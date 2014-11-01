@@ -2,9 +2,6 @@
 
 gboolean WindowList::key_event(GtkWidget *widget, GdkEventKey *event)
 {
-	/**
-	 * On escape pressed
-	 */
 	if (event->keyval == GDK_KEY_Escape){
 		gtk_main_quit();
 	}
@@ -18,7 +15,7 @@ void WindowList::print_hello (GtkWidget *widget, WindowInfo data)
 	//activate_window(data.disp, data.window);
 
 	//helper.client_msg(data.disp, win, "_NET_ACTIVE_WINDOW",0, 0, 0, 0, 0);
-	helper.client_msg(data.disp, data.window, "_NET_ACTIVE_WINDOW",0, 0, 0, 0, 0);
+	//helper.client_msg(data.disp, data.window, "_NET_ACTIVE_WINDOW",0, 0, 0, 0, 0);
 }
 
 void WindowList::create()
@@ -75,11 +72,9 @@ void WindowList::create()
 		           btn1.set_image(image)
 		           btn1.win_id = win_id*/
 
-		   button = gtk_button_new ();
-		   helper.icon(disp, i);
-		   gtk_button_set_image(GTK_BUTTON(button), image);
-		   gtk_widget_set_tooltip_text(button, "wewe2");
-		   g_signal_connect (button, "clicked", G_CALLBACK (print_hello), &windowinfo);
+		   button = gtk_button_new_with_label (title.c_str());
+		   gtk_widget_set_size_request(button, 50,50);
+		   //g_signal_connect (button, "clicked", G_CALLBACK (print_hello), &windowinfo);
 		   gtk_container_add (GTK_CONTAINER (mainBox), button);
 		}
 
